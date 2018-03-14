@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 
-namespace AirBnbProject
+namespace windowsForms
 {
+
     class Country
     {
         private string country;
         private int population;
         private int bnbPerCap;
-        private List<City> city;
+        List<City> cities = new List<City>();
 
-        public Country(List<City> city)
+        public Country(String Name, int Cap, int pop)
         {
-
+            country = Name;
+            bnbPerCap = Cap;
+            population = pop;
+        }
+        public void addCity(City city)
+        {
+            cities.Add(city);
         }
     }
 
@@ -27,15 +32,23 @@ namespace AirBnbProject
         private int population;
         private int avgIncome;
         private int turistYear;
-        private List<Accommodations> Accommodations;
+        List<Accommodations> accommodations = new List<Accommodations>();
 
-        public City(List<Accommodations> Accommodations)
+        public City(String name, int avg, int turist, int pop)
         {
+            cityName = name;
+            avgIncome = avg;
+            turistYear = turist;
+            population = pop;
+        }
 
+        public void addRoom(Accommodations room)
+        {
+            accommodations.Add(room);
         }
     }
 
-    class Accommodations // Boende 
+    class Accommodations
     {
         private int room_id;
         private int host_id;
@@ -57,24 +70,5 @@ namespace AirBnbProject
 
         }
     }
-    /*
-    class Connection
-    {
-        static string server = "mydb8.surf-town.net";
-        static string user = "hdb64894_handin3";
-        static string pw = "teamhandin3";
-        private MySqlConnection conn;
-        string connStr = $"server={server};user={user};database=hb64894_airbnb;port=3306;password={pw};";
-        
-        public Connection()
-        {
-            conn = new MySqlConnection(connStr);
-        }
 
-        public MySqlConnection GetConn()
-        {
-            return conn;
-        }
-    }
-    */
 }
